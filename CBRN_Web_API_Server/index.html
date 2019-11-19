@@ -27,16 +27,19 @@
 
         function reqeust(s) {
             $.ajax({
-                url: 'api/chemical',
-                type: 'POST',
+                url: 'api/' + s,
+                type: 'GET',
                 data: JSON.stringify(
                     { "Icons": [{ "Name": "Icon 2", "ID": 2, "Personnel": 0, "BreathingRate": { "ChemAg_Ih": 0.014999999664723873, "BioAg_RadPar_Ih": 0.014999999664723873, "ChemAg_UnitlessFactor": 1, "BreathingRateActivityLevel": "Light" }, "BodySurfaceArea": 0.9, "IPE": { "IpeClass": "None", "Inhalation": 1, "PervVap": 1, "PercLiq": 1, "BetaRad": 1, "GammaRad": 1, "NeutronRad": 1, "NucBlast": 1 }, "Vehicle_Shelter": { "InhalationPercutaneousVapourProtection": { "Inhalation": 0, "PercVap": 0, "PercLiq": "Infinity" }, "RadiationProtection": { "NeutronRadiation": 0, "GammaRadiation": 0, "BetaRadiation": "Infinity", "RadiationClassValue": "Armored Personeel" }, "BlastProtection": { "ProtectionFactor": 1 } }, "Prophylaxis": { "ProtectionFactor": 1 }, "Uniform": { "thresoldThermalFluence": 0, "UniformType": null }, "Challenges": [], "EffChallenges": [] }], "MethParams": { "Agent": "GH", "ChTypes": ["inhaled"], "CalcEffCh": false, "T_MTF": 30, "T_death": 15, "FlagMT": false, "CasCrit": 1, "D_trt": 1 } }
                 ),
                 dataType: 'json',
-                contentType: 'application/json',
-                success: function (data, textStatus, jqXHR) {
-                    $('#here_be_json').text(JSON.stringify(data));
-                }
+                contentType: 'application/json'
+            }).done(function (data) {
+                alert("done");
+                $('#here_be_json').text(JSON.stringify(data));
+            }).fail(function (er) {
+                console.log(er);
+                alert("bad");
             });
         }
 
