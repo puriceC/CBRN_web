@@ -6,19 +6,18 @@ using System.Net.Http;
 using System.Web.Http;
 using CBRN_Project.MVVM.Models;
 using CBRN_Web_API_Server.Models;
-using CBRN_Project.MVVM.Models.Chemical;
 using CBRN_Project.Data_Access;
-
+using CBRN_Project.MVVM.Models.Engine.Radiological;
 
 
 namespace CBRN_Web_API_Server.Controllers
 {
     public class RadiologicalController : ApiController
     {
-        private IEnumerable<KeyValuePair<int, DailyReport>> RadiologicalWrapper(Input i) { return new KeyValuePair<int, DailyReport>[0]; }
-        public IEnumerable<KeyValuePair<int, DailyReport>> GetReport([FromBody] Input input)
+        public IEnumerable<KeyValuePair<int, DailyReport>> GetRadiological([FromBody] Input input)
         {
-            return RadiologicalWrapper(input);
+            RadiologicalAgent.CalculateRadiologicalChallenge(input.Icons, input.MethParams);
+            return DailyReport.TableToDictionry(RadiologicalAgent.OutputTable);
         }
     }
 }

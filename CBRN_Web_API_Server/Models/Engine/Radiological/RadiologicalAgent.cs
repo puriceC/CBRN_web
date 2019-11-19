@@ -26,18 +26,23 @@ namespace CBRN_Project.MVVM.Models.Engine.Radiological
     
 
         //Tables
-        private static DataTable OutputTable = new DataTable();
-        
+        public static DataTable OutputTable = new DataTable();
+
+
         #endregion
 
 
         #region Main Methods
-       
 
-        public static void CalculateChallenge (List<Icon> icons, List<string> izotop)
+
+        public static void CalculateRadiologicalChallenge(IEnumerable<Icon> enumerableIcons, MethParams methParams)
         {
+
+            List<Icon> icons = enumerableIcons.ToList();
+            List<string> izotop = new List<string>();
+            izotop.Add("90Sr");
             GenerateOutput();
-            
+
             foreach (var icon in icons)
             {
                 InitChallengeType(icon, izotop);

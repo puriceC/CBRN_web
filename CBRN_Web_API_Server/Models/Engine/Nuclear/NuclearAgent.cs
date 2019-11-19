@@ -15,13 +15,14 @@ namespace CBRN_Project.MVVM.Models.Engine.Nuclear
         //Tables
         public static DataTable OutputTable = new DataTable();
 
-        
+
 
         #endregion
 
         #region Methods 
-        public static void CalculateNucChallenge(List <Icon> icons)
+        public static void CalculateNucChallenge(IEnumerable<Icon> enumerableIcons)
         {
+            List<Icon> icons = enumerableIcons.ToList();
             GenerateOutputTable();
             foreach (var icon in icons)
             {

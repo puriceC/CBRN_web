@@ -6,16 +6,26 @@
 <body>
 
     <div>
-        <h2>input</h2>
-        <input type="button" value="send" onclick="get_chemical();" />
+        <h2>chemical</h2>
+        <input type="button" value="send" onclick="reqeust('chemical');" />
     </div>
+    <div>
+        <h2>radiological</h2>
+        <input type="button" value="send" onclick="reqeust('radiological');" />
+    </div>
+    <div>
+        <h2>nuclear</h2>
+        <input type="button" value="send" onclick="reqeust('nuclear');" />
+    </div>
+    <div id="here_be_json">
 
+    </div>
 
 
     <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.3.min.js"></script>
     <script>
 
-        function get_chemical() {
+        function reqeust(s) {
             $.ajax({
                 url: 'api/chemical',
                 type: 'POST',

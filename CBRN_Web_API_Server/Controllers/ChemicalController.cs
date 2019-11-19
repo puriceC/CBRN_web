@@ -13,7 +13,7 @@ namespace CBRN_Web_API_Server.Controllers
 {
     public class ChemicalController : ApiController
     {
-        public IEnumerable<KeyValuePair<int, DailyReport>> GetReport([FromBody] Input input)
+        public IEnumerable<KeyValuePair<int, DailyReport>> GetChemical([FromBody] Input input)
         {
             ChemModel model = new ChemModel(new DataService(), input.MethParams, input.Icons);
             return model.MakeReport();
